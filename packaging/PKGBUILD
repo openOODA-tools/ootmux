@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ootmux-bin
+_pkgname=ootmux
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Capability-bounded terminal session multiplexer with split panes and stdio sockets."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ootmux"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ootmux')
+conflicts=('ootmux')
+source_x86_64=("${url}/releases/download/v${pkgver}/ootmux-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ootmux-linux-x86_64" "${pkgdir}/usr/bin/ootmux"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ootmux-uninstall"
+}
